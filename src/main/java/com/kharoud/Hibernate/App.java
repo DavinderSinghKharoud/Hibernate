@@ -17,9 +17,13 @@ public class App
         kharoud.setAname("kharoud");
         kharoud.setColors("black");
         
-//        Configuration con = new Configuration();
-//        SessionFactory sf = con.buildSessionFactory(); 
-//        Session session = sf.openSession();
-//        session.save( kharoud );
+        //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
+        Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
+        SessionFactory sf = con.buildSessionFactory(); 
+        Session session = sf.openSession();
+        session.save( kharoud );
+    	
+    	System.out.println("hell0");
     }
+    
 }
