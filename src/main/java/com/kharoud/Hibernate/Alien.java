@@ -8,6 +8,7 @@ public class Alien {
 	
 	@Id
 	private int aid;
+	
 	private String aname;
 	private String colors;
 	public int getAid() {
