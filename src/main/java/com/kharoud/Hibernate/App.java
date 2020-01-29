@@ -18,19 +18,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        Alien kharoud = new Alien();
-        kharoud.setAid(1);
+        Laptop laptop = new Laptop();
+        laptop.setLid(101);
+        laptop.setLname("DELL");
         
-        AlienName aName = new AlienName();
-        aName.setFname("Davinder Singh");
-        aName.setLname("Kharoud");
+        Student s = new Student();
+        s.setName("Davinder");
+        s.setRollno(1);
+        s.setMarks(100);
         
-        kharoud.setAname(aName);
-        kharoud.setColors("black");
         
         //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
         //Configure hibernate 4.2.20.Final
-        Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Student.class);
         
         ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
         		buildServiceRegistry();
@@ -38,11 +38,11 @@ public class App
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
-        session.save(kharoud);
+        session.save(laptop);
+        session.save(s);
         
         tx.commit();
     	
-    	System.out.println(kharoud);
     }
     
 }
