@@ -14,7 +14,7 @@ public class Alien {
 	@Id
 	private int aid;
 	
-	private String aname;
+	private AlienName aname;
 	
 	private String colors;
 	public int getAid() {
@@ -23,10 +23,12 @@ public class Alien {
 	public void setAid(int aid) {
 		this.aid = aid;
 	}
-	public String getAname() {
+	
+	
+	public AlienName getAname() {
 		return aname;
 	}
-	public void setAname(String aname) {
+	public void setAname(AlienName aname) {
 		this.aname = aname;
 	}
 	public String getColors() {

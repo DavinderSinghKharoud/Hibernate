@@ -20,7 +20,12 @@ public class App
     {
         Alien kharoud = new Alien();
         kharoud.setAid(1);
-        kharoud.setAname("kharoud");
+        
+        AlienName aName = new AlienName();
+        aName.setFname("Davinder Singh");
+        aName.setLname("Kharoud");
+        
+        kharoud.setAname(aName);
         kharoud.setColors("black");
         
         //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
@@ -34,7 +39,7 @@ public class App
         
         Transaction tx = session.beginTransaction();
         session.save(kharoud);
-        kharoud = (Alien)session.get(Alien.class, 1);
+        
         tx.commit();
     	
     	System.out.println(kharoud);
