@@ -18,30 +18,38 @@ public class App
 {
     public static void main( String[] args )
     {
-        Laptop laptop = new Laptop();
-        laptop.setLid(101);
-        laptop.setLname("DELL");
+ 
+    	Alien alien = new Alien();
+    	alien.setAid(1);
+    	alien.setAname("Sunny");
         
-        Student s = new Student();
-        s.setName("Davinder");
-        s.setRollno(1);
-        s.setMarks(100);
-        //Now, it will not create another table
-        laptop.getStudent().add(s);
-        
-        
+    	Alien alien1 = new Alien();
+    	alien1.setAid(2);
+    	alien1.setAname("Kharoud");
+    	
+    	Laptop laptop = new Laptop();
+    	laptop.setLid(101);
+    	laptop.setBrand("DELL");
+    	laptop.setPrice(1000);
+    	laptop.setAlien(alien);
+    	
+    	
+    	
+    	
         //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
         //Configure hibernate 4.2.20.Final
-        Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Student.class);
-        
-        ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
-        		buildServiceRegistry();
-        SessionFactory sf = con.buildSessionFactory( ref); 
+        Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Alien.class);
+//        
+//        ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
+//        		buildServiceRegistry();
+        SessionFactory sf = con.buildSessionFactory( ); 
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
+        
+        session.save(alien);
+        session.save(alien1);
         session.save(laptop);
-        session.save(s);
         
         tx.commit();
     	

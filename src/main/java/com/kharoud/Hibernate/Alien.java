@@ -1,46 +1,51 @@
 package com.kharoud.Hibernate;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Entity//(name = "Alient_table"), we can also add here to change table name, but also that will change entity name
-
-
+@Entity
 public class Alien {
 	
 	@Id
 	private int aid;
+	private String aname;
 	
-	private AlienName aname;
+	@OneToMany(mappedBy="alien")
+	private Collection<Laptop> laps = new ArrayList<Laptop>();
 	
-	private String colors;
+	
+	@Override
+	public String toString() {
+		return "Alien [aid=" + aid + ", aname=" + aname + ", laps=" + laps + "]";
+	}
+	public Collection<Laptop> getLaps() {
+		return laps;
+	}
+	public void setLaps(Collection<Laptop> laps) {
+		this.laps = laps;
+	}
 	public int getAid() {
 		return aid;
 	}
 	public void setAid(int aid) {
 		this.aid = aid;
 	}
-	
-	
-	public AlienName getAname() {
+	public String getAname() {
 		return aname;
 	}
-	public void setAname(AlienName aname) {
+	public void setAname(String aname) {
 		this.aname = aname;
 	}
-	public String getColors() {
-		return colors;
-	}
-	public void setColors(String colors) {
-		this.colors = colors;
-	}
-	@Override
-	public String toString() {
-		return "Alien [aid=" + aid + ", aname=" + aname + ", colors=" + colors + "]";
-	}
+	
+	
+	
 	
 
 }

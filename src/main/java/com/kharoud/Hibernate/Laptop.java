@@ -13,29 +13,36 @@ public class Laptop {
 
 	@Id
 	private int Lid;
-	private String Lname;
+	private String brand;
+	private int price;
 	
-	@ManyToMany
-	private List<Student> student = new ArrayList<Student>();
+	@ManyToOne
+	private Alien alien;
 	
-	public void setStudent(List<Student> student) {
-		this.student = student;
+	
+	public int getPrice() {
+		return price;
 	}
-	public List<Student> getStudent() {
-		return student;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public Alien getAlien() {
+		return alien;
+	}
+	public void setAlien(Alien alien) {
+		this.alien = alien;
+	}
 	public int getLid() {
 		return Lid;
 	}
 	public void setLid(int lid) {
 		Lid = lid;
-	}
-	public String getLname() {
-		return Lname;
-	}
-	public void setLname(String lname) {
-		Lname = lname;
 	}
 	
 	
