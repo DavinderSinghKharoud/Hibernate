@@ -3,6 +3,8 @@ package com.kharoud.Hibernate;
 
 
 
+import java.util.Collection;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -32,24 +34,31 @@ public class App
     	laptop.setBrand("DELL");
     	laptop.setPrice(1000);
     	laptop.setAlien(alien);
+   	
     	
     	
-    	
-    	
-        //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
-        //Configure hibernate 4.2.20.Final
+  
         Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Alien.class);
-//        
-//        ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
-//        		buildServiceRegistry();
-        SessionFactory sf = con.buildSessionFactory( ); 
+        
+        ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
+        		buildServiceRegistry();
+        SessionFactory sf = con.buildSessionFactory( ref); 
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
         
-        session.save(alien);
-        session.save(alien1);
-        session.save(laptop);
+//        session.save(alien1);
+//        session.save(alien);
+//        session.save(laptop);
+//        
+        Alien a1 = (Alien) session.get(Alien.class, 1);
+        System.out.println(a1.getAname());
+//        Collection<Laptop> laps = a1.getLaps();
+//        
+//        for( Laptop l : laps) {
+//        	
+//        	System.out.println(l);
+//        }
         
         tx.commit();
     	

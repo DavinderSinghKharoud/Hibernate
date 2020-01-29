@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +18,7 @@ public class Alien {
 	private int aid;
 	private String aname;
 	
-	@OneToMany(mappedBy="alien")
+	@OneToMany(mappedBy="alien",fetch=FetchType.EAGER)
 	private Collection<Laptop> laps = new ArrayList<Laptop>();
 	
 	
