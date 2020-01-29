@@ -36,7 +36,7 @@ public class App
         session.save( kharoud );
         tx.commit();
     	
-    	System.out.println("hell0");
+    	System.out.println(kharoud);
     }
     
 }
