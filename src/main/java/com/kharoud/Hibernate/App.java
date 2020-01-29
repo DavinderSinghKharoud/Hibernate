@@ -26,8 +26,8 @@ public class App
         s.setName("Davinder");
         s.setRollno(1);
         s.setMarks(100);
-        //It has create another table called as student_laptop
-        s.getLaptop().add(laptop);
+        //Now, it will not create another table
+        laptop.setStudent(s);
         
         
         //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
