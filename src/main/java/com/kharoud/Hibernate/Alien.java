@@ -7,16 +7,15 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity//(name = "Alient_table"), we can also add here to change table name, but also that will change entity name
-@Table(name = "Alient_table")
+
 
 public class Alien {
 	
 	@Id
 	private int aid;
-	@Transient
+	
 	private String aname;
 	
-	@Column(name="alien_color")
 	private String colors;
 	public int getAid() {
 		return aid;

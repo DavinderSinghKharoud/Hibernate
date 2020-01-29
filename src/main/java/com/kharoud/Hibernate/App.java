@@ -33,7 +33,8 @@ public class App
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
-        session.save( kharoud );
+        session.save(kharoud);
+        kharoud = (Alien)session.get(Alien.class, 1);
         tx.commit();
     	
     	System.out.println(kharoud);
