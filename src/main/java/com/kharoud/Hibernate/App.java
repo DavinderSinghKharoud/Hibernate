@@ -2,10 +2,13 @@ package com.kharoud.Hibernate;
 
 
 
+import javax.imageio.spi.ServiceRegistry;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * Hello world!
@@ -23,7 +26,10 @@ public class App
         //Install JBoss from eclipse marketplace and add hibernate.cfg.xml
         //Configure hibernate 4.2.20.Final
         Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
-        SessionFactory sf = con.buildSessionFactory(); 
+        
+        ServiceRegistry ref = (ServiceRegistry) new ServiceRegistryBuilder().applySettings(con.getProperties()).
+        		buildServiceRegistry();
+        SessionFactory sf = con.buildSessionFactory( (org.hibernate.service.ServiceRegistry) ref); 
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
