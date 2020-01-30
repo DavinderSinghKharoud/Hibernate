@@ -60,7 +60,7 @@ public class App
 //        	session1.save(s);
 //        }
         
-        Query q = session1.createQuery("from Student");
+        Query q = session1.createQuery("from Student where marks>=50");
         List<Student> students = q.list();
         
         for( Student s: students) {
