@@ -4,6 +4,7 @@ package com.kharoud.Hibernate;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 import org.hibernate.Query;
@@ -48,15 +49,22 @@ public class App
         Session session1 = sf.openSession();
         
         Transaction tx1 = session1.beginTransaction();
+//        
+//        Random r = new Random();
+//        
+//        for(int i = 1; i<=50;i++) {
+//        	Student s= new Student();
+//        	s.setRollno(i);
+//        	s.setMarks(r.nextInt(100));
+//        	s.setName("Sunny");
+//        	session1.save(s);
+//        }
         
-        Random r = new Random();
+        Query q = session1.createQuery("from Student");
+        List<Student> students = q.list();
         
-        for(int i = 1; i<=50;i++) {
-        	Student s= new Student();
-        	s.setRollno(i);
-        	s.setMarks(r.nextInt(100));
-        	s.setName("Sunny");
-        	session1.save(s);
+        for( Student s: students) {
+        	System.out.println(s);
         }
         
         tx1.commit();
