@@ -60,13 +60,13 @@ public class App
 //        	session1.save(s);
 //        }
         
-        Query q = session1.createQuery("select rollno,marks from Student where rollno=4");
-        List<Object[]> students =  (List<Object[]>) q.list();
+        Query q = session1.createQuery("select sum(marks) from Student where marks>=4");
+        List students =  (List<Object[]>) q.list();
         
-        for( Object[] student: students) {
+        for( Object marks: students) {
         	
         
-        System.out.println(student[0]+" : "+ student[1]);
+        System.out.println(marks);
         }
         
         tx1.commit();
