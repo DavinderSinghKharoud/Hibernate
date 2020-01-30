@@ -5,15 +5,19 @@ package com.kharoud.Hibernate;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+
 
 
 /**
@@ -59,14 +63,17 @@ public class App
 //        	s.setName("Sunny");
 //        	session1.save(s);
 //        }
+      
+        //Native Queries
+        SQLQuery query = session1.createSQLQuery("Select name, marks from student where marks>60");
+        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        List students = query.list();
         
-        Query q = session1.createQuery("select sum(marks) from Student where marks>=4");
-        Long marks = (Long)q.uniqueResult();
         
-        
-        System.out.println(marks);
-        
-        
+        for( Object o: students) {
+        	Map m =(Map)o;
+        	System.out.println(m.get("name")+" : " + m.get("marks"));
+        }
         tx1.commit();
         
     }
