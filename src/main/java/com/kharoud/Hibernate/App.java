@@ -61,10 +61,13 @@ public class App
 //        }
         
         Query q = session1.createQuery("select rollno,marks from Student where rollno=4");
-        Object[] students =  (Object[]) q.uniqueResult();
+        List<Object[]> students =  (List<Object[]>) q.list();
         
-        System.out.println(students[0]+" : "+ students[1]);
+        for( Object[] student: students) {
+        	
         
+        System.out.println(student[0]+" : "+ student[1]);
+        }
         
         tx1.commit();
         
