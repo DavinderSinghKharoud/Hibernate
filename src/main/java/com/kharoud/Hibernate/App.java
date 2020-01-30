@@ -60,12 +60,11 @@ public class App
 //        	session1.save(s);
 //        }
         
-        Query q = session1.createQuery("from Student where marks>=50");
-        List<Student> students = q.list();
+        Query q = session1.createQuery("select rollno,marks from Student where rollno=4");
+        Object[] students =  (Object[]) q.uniqueResult();
         
-        for( Student s: students) {
-        	System.out.println(s);
-        }
+        System.out.println(students[0]+" : "+ students[1]);
+        
         
         tx1.commit();
         
