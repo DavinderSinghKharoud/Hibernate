@@ -61,13 +61,11 @@ public class App
 //        }
         
         Query q = session1.createQuery("select sum(marks) from Student where marks>=4");
-        List students =  (List<Object[]>) q.list();
+        Long marks = (Long)q.uniqueResult();
         
-        for( Object marks: students) {
-        	
         
         System.out.println(marks);
-        }
+        
         
         tx1.commit();
         
