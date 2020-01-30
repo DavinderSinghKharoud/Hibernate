@@ -4,6 +4,7 @@ package com.kharoud.Hibernate;
 
 
 import java.util.Collection;
+import java.util.Random;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,9 +39,7 @@ public class App
     	laptop.setAlien(alien);
    	
     	
-    	
-        Alien a = null;
-        Configuration con = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Alien.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
         
         ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
         		buildServiceRegistry();
@@ -49,25 +48,19 @@ public class App
         Session session1 = sf.openSession();
         
         Transaction tx1 = session1.beginTransaction();
-      
-     
-        //Make sure ecache and hibernate-ecache
-        Query q1 = session1.createQuery("from Alien where aid = 1");
-        q1.setCacheable(true);
-        a = (Alien)q1.uniqueResult(); System.out.println(a);
+        
+        Random r = new Random();
+        
+        for(int i = 1; i<=50;i++) {
+        	Student s= new Student();
+        	s.setRollno(i);
+        	s.setMarks(r.nextInt(100));
+        	s.setName("Sunny");
+        	session1.save(s);
+        }
         
         tx1.commit();
         
-        Session session2 = sf.openSession();
-        Transaction tx2 = session2.beginTransaction();
-        
-     
-        Query q2 = session2.createQuery("from Alien where aid = 1");
-        q2.setCacheable(true);
-        a = (Alien)q2.uniqueResult();
-        System.out.println(a);
-        tx2.commit();
-    	
     }
     
 }
