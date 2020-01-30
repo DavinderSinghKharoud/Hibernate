@@ -43,24 +43,25 @@ public class App
         ServiceRegistry ref = new ServiceRegistryBuilder().applySettings(con.getProperties()).
         		buildServiceRegistry();
         SessionFactory sf = con.buildSessionFactory( ref); 
-        Session session = sf.openSession();
+        Session session1 = sf.openSession();
         
-        Transaction tx = session.beginTransaction();
+        Transaction tx1 = session1.beginTransaction();
         
 //        session.save(alien1);
 //        session.save(alien);
 //        session.save(laptop);
-//        
-        Alien a1 = (Alien) session.get(Alien.class, 1);
-        System.out.println(a1.getAname());
-//        Collection<Laptop> laps = a1.getLaps();
-//        
-//        for( Laptop l : laps) {
-//        	
-//        	System.out.println(l);
-//        }
+     
+        Alien a = (Alien) session1.get(Alien.class, 1);
+        System.out.println(a);
+        tx1.commit();
         
-        tx.commit();
+        Session session2 = sf.openSession();
+        Transaction tx2 = session2.beginTransaction();
+        
+     
+        Alien a2 = (Alien) session2.get(Alien.class, 1);
+        System.out.println(a);
+        tx2.commit();
     	
     }
     
