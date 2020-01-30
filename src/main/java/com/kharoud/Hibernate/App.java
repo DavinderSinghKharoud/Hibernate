@@ -51,6 +51,7 @@ public class App
 //        session.save(alien);
 //        session.save(laptop);
      
+        //Make sure ecache and hibernate-ecache
         Alien a = (Alien) session1.get(Alien.class, 1);
         System.out.println(a);
         tx1.commit();
@@ -60,7 +61,7 @@ public class App
         
      
         Alien a2 = (Alien) session2.get(Alien.class, 1);
-        System.out.println(a);
+        System.out.println(a2);
         tx2.commit();
     	
     }
