@@ -61,9 +61,9 @@ public class App
         l.setPrice(3232);
         
         session1.save(l);
-        l.setPrice(300);
-        tx1.commit();
         
+        tx1.commit();
+        session1.evict(l);
     }
     
 }
